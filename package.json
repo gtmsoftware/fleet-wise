@@ -1,0 +1,34 @@
+{
+  "name": "fleet-wise",
+  "version": "0.0.1",
+  "description": "FleetWise - Streamline Your Transport Business with Effortless Efficiency.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtmsoftware/fleet-wise.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "javascript",
+    "cloud",
+    "docker",
+    "postgres",
+    "aws"
+  ],
+  "author": "GTM Software Inc",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gtmsoftware/fleet-wise/issues"
+  },
+  "homepage": "https://github.com/gtmsoftware/fleet-wise#readme",
+  "dependencies": {
+    "compress": "^0.99.0",
+    "express": "^4.18.2",
+    "handsontable": "^13.1.0",
+    "nodemon": "^3.0.1"
+  }
+}
