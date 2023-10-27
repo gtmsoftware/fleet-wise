@@ -1,9 +1,11 @@
 {
   "name": "fleet-wise",
   "version": "0.0.1",
+  "private": true,
   "description": "FleetWise - Streamline Your Transport Business with Effortless Efficiency.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,8 +29,13 @@
   "homepage": "https://github.com/gtmsoftware/fleet-wise#readme",
   "dependencies": {
     "compress": "^0.99.0",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "handsontable": "^13.1.0",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
   }
 }
