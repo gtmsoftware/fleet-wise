@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('common/meta'); %>
+    <link rel="stylesheet" href="/stylesheets/unloading.css">
+    <script src="/javascripts/unloading.js"></script>
+  </head>
+  <body>
+    <%- include('common/header'); %>
+    <h1><%= message %></h1>
+    <form method="post" action="/unloading">
+      
+      <div class="frm-field">
+        <br>
+        <label for="loadingDate">Unloading Date:</label><br>
+        <input type="datetime-local" id="loadingDate" name="loadingDate" value="">
+        <br>
+      </div>
+      
+      <div class="frm-field">
+        <br>
+        <label for="ponitSale">Ponit Sale:</label><br>
+        <input type="text" id="ponitSale" name="ponitSale" value="Ponit Sale">
+        <br>
+      </div>
+
+      <div class="frm-field">
+        <br>
+        <label for="buyer">Buyer:</label><br>
+        <input type="text" id="buyer" name="buyer" value="buyer">
+        <br>
+      </div>
+
+      <div class="frm-field">
+        <br>
+        <label for="weight">Weight (Metric-Tons):</label><br>
+        <input type="text" id="weight" name="weight" value="0.00">
+        <br>
+      </div>
+
+      <div class="frm-field">
+        <br>
+        <label for="rate">Rate :</label><br>
+        <input type="text" id="rate" name="rate" value="INR 00.00">
+        <br>
+      </div>
+
+      <div class="frm-field">
+        <br>
+        <label for="total">Total :</label><br>
+        <input type="text" id="total" name="total" value="INR 00.00">
+        <br>
+      </div>
+
+      <div class="frm-field">
+        <br>
+        <label for="cr-dr">CR(नगद) / DB (उधार) :</label><br><br>
+        <input type="radio" id="cr" name="cr-dr" value="CR"><label for="cr-dr">CR(नगद) :</label><br>
+        <input type="radio" id="dr" name="cr-dr" value="DR"><label for="cr-dr">DB (उधार) :</label>
+        <br>
+      </div>
+      
+      <div class="frm-button">
+        <br>
+        <input type="submit" value="Save">
+      </div>
+
+    </form>
+    <%- include('common/footer'); %>
+  </body>
+</html>
