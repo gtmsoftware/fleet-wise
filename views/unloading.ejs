@@ -9,64 +9,76 @@
   <body>
     <%- include('common/header'); %>
     <h1><%= message %></h1>
-    <form method="post" action="/unloading">
+    <form id="unloadingFrm" action="/unloading" method="post">
       
       <div class="frm-field">
         <br>
-        <label for="loadingDate">Unloading Date:</label><br>
-        <input type="datetime-local" id="loadingDate" name="loadingDate" value="">
-        <br>
-      </div>
-      
-      <div class="frm-field">
-        <br>
-        <label for="ponitSale">Ponit Sale:</label><br>
-        <input type="text" id="ponitSale" name="ponitSale" value="Ponit Sale">
+        <label for="unloadingDate">Unloading Date:</label><br>
+        <input type="datetime-local" id="unloadingDate" name="unloadingDate" value="">
         <br>
       </div>
 
       <div class="frm-field">
         <br>
         <label for="buyer">Buyer:</label><br>
-        <input type="text" id="buyer" name="buyer" value="buyer">
+        <input type="text" id="buyer" name="buyer" value="" required maxlength="100">
+        <br>
+      </div>
+      
+      <div class="frm-field">
+        <br>
+        <label for="ponitSale">Ponit Sale:</label><br>
+        <input type="text" id="ponitSale" name="ponitSale" value="" required maxlength="100">
         <br>
       </div>
 
       <div class="frm-field">
         <br>
         <label for="weight">Weight (Metric-Tons):</label><br>
-        <input type="text" id="weight" name="weight" value="0.00">
+        <input type="number" min="0.00" max="10000.00" step="0.01" id="weight" name="weight" value="0.00" required>
         <br>
       </div>
 
       <div class="frm-field">
         <br>
-        <label for="rate">Rate :</label><br>
-        <input type="text" id="rate" name="rate" value="INR 00.00">
+        <label for="rate">Rate(₹) :</label><br>
+        <input type="number" min="0" max="100000" step="1" id="rate" name="rate" value="0" required>
         <br>
       </div>
 
       <div class="frm-field">
         <br>
-        <label for="total">Total :</label><br>
-        <input type="text" id="total" name="total" value="INR 00.00">
+        <label for="total">Total (₹) :</label><br>
+        <input type="number" min="0.00" max="10000.00" step="0.01" id="total" name="total" value="000000.00" readonly >
         <br>
       </div>
 
       <div class="frm-field">
         <br>
         <label for="cr-dr">CR(नगद) / DB (उधार) :</label><br><br>
-        <input type="radio" id="cr" name="cr-dr" value="CR"><label for="cr-dr">CR(नगद) :</label><br>
+        <input type="radio" id="cr" name="cr-dr" value="CR" checked><label for="cr-dr">CR(नगद) :</label><br>
         <input type="radio" id="dr" name="cr-dr" value="DR"><label for="cr-dr">DB (उधार) :</label>
         <br>
       </div>
       
       <div class="frm-button">
         <br>
-        <input type="submit" value="Save">
+        <input id="unloadingFrmSave" type="submit">Save</input>
       </div>
 
     </form>
+    <script>
+      
+      function calculate (e) {
+        e.preventDefault();
+
+        const weight = document.getElementById("weight").value;
+        const rate = document.getElementById("rate").value;
+        total.value = weight * rate;
+      }
+      total.addEventListener("focus", calculate);
+
+    </script>
     <%- include('common/footer'); %>
   </body>
 </html>
