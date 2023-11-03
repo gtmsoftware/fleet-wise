@@ -8,6 +8,16 @@ const app = require('../app');
 const debug = require('debug')('temp:server');
 const http = require('http');
 
+const dbConnectionPool = require('../dbservice/db_pool');
+
+/**
+ * Check DB Connection Pool Intilised
+ */
+!(async () => {
+  const result = await dbConnectionPool.query('SELECT NOW()');
+  result ? console.log(' DB Connection Success ') : console.error(' DB Connection Failed ');
+})();
+
 /**
  * Get port from environment and store in Express.
  */
