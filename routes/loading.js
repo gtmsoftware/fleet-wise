@@ -8,9 +8,11 @@ const pageName = 'Loading Entry Page';
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   const rokar = '2023/NOV/028';
-  const record = {};
+  const record = '';
 
-  res.render('loading', { title: `${pageName}`, message: `${pageName}`, record: `${record}` });
+  // const viewData = {rokar : `${[loading_service.getRokarList()]}`};
+
+  res.render('loading', { title: `${pageName}`, message: `${pageName}`, record: `${record}` , viewData: ['2023/NOV/028', '2023/NOV/029', '2023/NOV/030', '2023/NOV/031', '2023/NOV/032', '2023/NOV/033','2023/NOV/034'] });
 });
 
 
