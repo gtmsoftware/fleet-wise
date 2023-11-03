@@ -10,6 +10,29 @@
     <%- include('common/header'); %>
     <h1><%= message %></h1>
     <form id="unloadingFrm" action="/unloading" method="post">
+
+      <div class="frm-field">
+        <br>
+        <label for="rokar">Rokar Number (रोकड़):</label><br>
+        <select id="rokar" name="rokar" required tabindex="1">
+          <optgroup label="Select Rokar Number (रोकड़)">
+
+            <% rokerList.forEach(function(rokar){ %>
+              <option value="<%= rokar %>"><%= rokar %></option>
+            <% }) %>
+            
+          </optgroup>
+        </select>
+        <br>
+      </div>
+
+      <div class="frm-field">
+        <br>
+        <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
+        <input type="text" id="vehicleNumber" name="vehicleNumber" value="" required maxlength="10">
+        <br>
+      </div>
+      
       
       <div class="frm-field">
         <br>

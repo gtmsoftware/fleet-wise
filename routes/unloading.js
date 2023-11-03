@@ -1,11 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const pageName = 'Unloading Entry Page';
+const { getRokarList } = require('../dbservice/common/common_service');
+
+const pageName = 'Unloading Entry Page (अनलोडिंग एंट्री पेज)';
+
+const viewObject = { 
+  title: `${pageName}`,
+  message: `${pageName}`,
+};
+
+viewObject.rokerList = getRokarList();
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('unloading', { title: `${pageName}`, message: `${pageName}` });
+  const record = '';
+  viewObject.record = record;
+  res.render('loading',viewObject);
 });
 
 

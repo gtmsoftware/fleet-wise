@@ -17,15 +17,7 @@
       <div class="frm-field">
         <br>
         <label for="rokar">Rokar Number (रोकड़):</label><br>
-        <select id="rokar" name="rokar" required tabindex="1">
-          <optgroup label="Select Rokar Number (रोकड़)">
-
-            <% viewData.forEach(function(rokar){ %>
-              <option value="<%= rokar %>"><%= rokar %></option>
-            <% }) %>
-            
-          </optgroup>
-        </select>
+        <input type="text" id="rokar" name="rokar" value="<%= newroker %>" required readonly>
         <br>
       </div>
 
