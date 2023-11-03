@@ -10,11 +10,14 @@ const viewObject = {
   message: `${pageName}`,
 };
 
-viewObject.rokerList = getRokarList();
-
-
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+
+
+  const rokerList = await getRokarList();
+  viewObject.rokerList = rokerList;
+
+
   const record = '';
   viewObject.record = record;
   res.render('unloading',viewObject);
@@ -22,7 +25,10 @@ router.get('/', function(req, res, next) {
 
 
 /* SAVE loading Entry. */
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
+  const rokerList = await getRokarList();
+  viewObject.rokerList = rokerList;
+  
     console.log(`${JSON.stringify(req.body)}`);
     res.render('unloading', { title: `${pageName}`, message: 'Unloading Entry Saved' });
   });

@@ -16,11 +16,9 @@
         <label for="rokar">Rokar Number (रोकड़):</label><br>
         <select id="rokar" name="rokar" required tabindex="1">
           <optgroup label="Select Rokar Number (रोकड़)">
-
             <% rokerList.forEach(function(rokar){ %>
               <option value="<%= rokar %>"><%= rokar %></option>
             <% }) %>
-            
           </optgroup>
         </select>
         <br>
