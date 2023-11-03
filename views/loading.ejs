@@ -24,7 +24,14 @@
       <div class="frm-field">
         <br>
         <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
-        <input type="text" id="vehicleNumber" name="vehicleNumber" value="" required maxlength="10">
+
+        <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
+          <optgroup label="Select Gadi Number (गाड़ी नंबर)">
+            <% gadiList.forEach(function(gadi){ %>
+              <option value="<%= gadi %>"><%= gadi %></option>
+            <% }) %>
+          </optgroup>
+        </select>
         <br>
       </div>
 

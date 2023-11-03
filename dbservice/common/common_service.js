@@ -2,8 +2,6 @@ const dbConnectionPool = require('../db_pool');
 
 
 const getRokarList = async (rokar) => {
-  console.log("Started :: Get Loading");
-
   const rokarArray = [];
   const query = {
     name: 'get-all-rokar',
@@ -13,23 +11,30 @@ const getRokarList = async (rokar) => {
   
   try {
     const result = await dbConnectionPool.query(query);
-    console.log('Rokar Fetched :', result.rows);
     result.rows.forEach((r) => rokarArray.push(r.rokar));
-    // rokarArray.push[result.rows];
-
-    console.log('Rokar Fetched 2:', rokarArray);
     return rokarArray;
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-// const getRokarList = () => {
-//     const rokarArray = ['2023-NOV-028', '2023-NOV-029', '2023-NOV-030', '2023-NOV-031', '2023-NOV-032', '2023-NOV-033','2023-NOV-034']; 
-  
-//     return rokarArray;
-//   }
+const getGadiList = async (rokar) => {
 
-  module.exports = { getRokarList };
+  const dataArray = [];
+  const query = {
+    name: 'get-all-gadi-number',
+    text: 'SELECT distinct gadi_number  FROM fleetwise_schema.vehicle_master vm ',
+    values: [],
+  }
+  
+  try {
+    const result = await dbConnectionPool.query(query);
+    result.rows.forEach((d) => dataArray.push(d.gadi_number));
+    return dataArray;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+  module.exports = { getRokarList , getGadiList };
 
   
