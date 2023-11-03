@@ -11,8 +11,6 @@ const viewObject = {
   message: `${pageName}`,
 };
 
-
-
 /* GET Loading Entry Form . */
 router.get('/', async function(req, res, next) {
 
@@ -27,7 +25,7 @@ router.get('/', async function(req, res, next) {
 
 
 /* GET users listing. */
-router.get('/:rokar', async function(req, res, next) {  
+router.get('/:rokar', async function(req, res, next) {
   
   console.log(`Getting Loading Entry Record Using Rokar : ${req.params.rokar}`);
   
