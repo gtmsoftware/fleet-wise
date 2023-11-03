@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { getRokarList, getGadiList } = require('../dbservice/common/common_service');
+const { getUnLoading, saveUnLoading} = require('../dbservice/unloading_service');
 
 const pageName = 'Unloading Entry Page (अनलोडिंग एंट्री पेज)';
 
@@ -25,13 +26,24 @@ router.get('/', async function (req, res, next) {
 });
 
 
-/* SAVE loading Entry. */
+/* SAVE unloading Entry. */
 router.post('/', async function (req, res, next) {
+  
   const rokerList = await getRokarList();
   viewObject.rokerList = rokerList;
 
-  console.log(`${JSON.stringify(req.body)}`);
-  res.render('unloading', { title: `${pageName}`, message: 'Unloading Entry Saved' });
+  const gadiList = await getGadiList();
+  viewObject.gadiList = gadiList;
+
+  console.log(`req==>${JSON.stringify(req.body)}`);
+
+    const { unloadingDate, ponitSale, buyer, weight, rate, total, cr_dr, rokar, vehicleNumber  } = req.body;
+    
+    saveLoading(unloadingDate, ponitSale, buyer, weight, rate, total, cr_dr, vehicleNumber, rokar);
+
+    viewObject.message = 'Unloading Entry Saved';
+
+  res.render('unloading', viewObject);
 });
 
 

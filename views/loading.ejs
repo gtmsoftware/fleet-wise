@@ -27,6 +27,7 @@
 
         <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
           <optgroup label="Select Gadi Number (गाड़ी नंबर)">
+            <option value="">-----------</option>
             <% gadiList.forEach(function(gadi){ %>
               <option value="<%= gadi %>"><%= gadi %></option>
             <% }) %>

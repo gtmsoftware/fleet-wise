@@ -16,6 +16,7 @@
         <label for="rokar">Rokar Number (रोकड़):</label><br>
         <select id="rokar" name="rokar" required tabindex="1">
           <optgroup label="Select Rokar Number (रोकड़)">
+            <option value="">---------------</option>
             <% rokerList.forEach(function(rokar){ %>
               <option value="<%= rokar %>"><%= rokar %></option>
             <% }) %>
@@ -29,6 +30,7 @@
         <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
         <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
           <optgroup label="Select Gadi Number (गाड़ी नंबर)">
+            <option value="">-----------</option>
             <% gadiList.forEach(function(gadi){ %>
               <option value="<%= gadi %>"><%= gadi %></option>
             <% }) %>
