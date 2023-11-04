@@ -3,10 +3,165 @@
   <head>
     <title><%= title %></title>
     <%- include('common/meta'); %>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
+
   </head>
   <body>
     <%- include('common/header'); %>
     <h1><%= message %></h1>
+    <% if (reportData) { %>
+      <script>
+        var reportData1 = '<%- reportData %>'          
+     </script>
+      <div id="example">
+
+      </div>
+        
+    <% } %>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var data = [
+          {
+            sale_point: 'as',
+            buyer: 'ads',
+            cr_dr: 'CR',
+            vehiclenumber: 'UP77 N 1234',
+            rokar: '2023/NOV/028',
+            loaddt: '2023-11-03T09:59:00.000Z',
+            weight: 123.45,
+            rate: 12324,
+            total: 1521397.8
+          },
+  {
+    sale_point: 'poS1',
+    buyer: 'b1',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP77 N 1234',
+    rokar: '2023/NOV/028',
+    loaddt: '2023-11-03T10:17:00.000Z',
+    weight: 12.3,
+    rate: 34,
+    total: 418.2
+  },
+  {
+    sale_point: 'qw',
+    buyer: 'tr',
+    cr_dr: 'CR',
+    vehiclenumber: 'UP77 N 1234',
+    rokar: '2023-NOV-028',
+    loaddt: '2023-11-03T11:10:00.000Z',
+    weight: 233.2,
+    rate: 2321,
+    total: 541257.2
+  },
+  {
+    sale_point: 'weqw',
+    buyer: 'erwwe',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP77 N 1234',
+    rokar: '2023-NOV-028',
+    loaddt: '2023-11-03T11:12:00.000Z',
+    weight: 45.4,
+    rate: 43634,
+    total: 1980983.6
+  },
+  {
+    sale_point: 'qw',
+    buyer: 'q',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP77 N 1234',
+    rokar: '2023-NOV-028',
+    loaddt: '2023-11-03T13:42:00.000Z',
+    weight: 1.24,
+    rate: 456,
+    total: 565.44
+  },
+  {
+    sale_point: 'qw',
+    buyer: 'q',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP77 N 1234',
+    rokar: '2023-NOV-028',
+    loaddt: '2023-11-03T13:42:00.000Z',
+    weight: 1.24,
+    rate: 456,
+    total: 565.44
+  },
+  {
+    sale_point: 'POS1',
+    buyer: 'BUY1',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP16BH6234',
+    rokar: '2023-NOV-030',
+    loaddt: '2023-11-03T14:23:00.000Z',
+    weight: 12.5,
+    rate: 43000,
+    total: 537500
+  },
+  {
+    sale_point: 'POS2',
+    buyer: 'BUY2',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP16BH6235',
+    rokar: '2023-NOV-12',
+    loaddt: '2023-11-03T16:23:00.000Z',
+    weight: 23.45,
+    rate: 54346,
+    total: 1274413.8
+  },
+  {
+    sale_point: 'fd',
+    buyer: 'dsf',
+    cr_dr: 'DR',
+    vehiclenumber: 'UP77N1234',
+    rokar: '2023-NOV-130',
+    loaddt: '2023-11-04T11:56:00.000Z',
+    weight: 12,
+    rate: 43534,
+    total: 522408
+  },
+  {
+    sale_point: '13',
+    buyer: '1',
+    cr_dr: 'CR',
+    vehiclenumber: 'UP77N1234',
+    rokar: '2023-NOV-202',
+    loaddt: '2023-11-04T18:02:00.000Z',
+    weight: 134,
+    rate: 97807,
+    total: 131062450
+  }
+];
+
+        //TODO Ojcet to Array of Object COnverion required
+        //var data = '<%- reportData %>';
+  
+        var container = document.getElementById('example');
+        var hot = new Handsontable(container, {
+          data: data,
+          rowHeaders: true,
+          colHeaders: Object.keys(data[0]),
+          columns: [
+            { data: 'sale_point' },
+            { data: 'buyer' },
+            { data: 'cr_dr' },
+            { data: 'vehiclenumber' },
+            { data: 'rokar' },
+            { data: 'loaddt' },
+            { data: 'weight' },
+            { data: 'rate' },
+            { data: 'total' },
+          ],
+          stretchH: 'all',
+          autoWrapRow: true,
+          height: 400, // Set the desired height
+          licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
+        });
+      });
+    </script>
     <%- include('common/footer'); %>
   </body>
 </html>

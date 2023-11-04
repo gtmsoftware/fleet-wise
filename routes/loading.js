@@ -34,15 +34,9 @@ const populateViewObject = async () => {
 router.get('/', async function(req, res, next) {
 
   const viewObject = await populateViewObject();
-
+  
   const record = '';
-
   viewObject.record = record;
-
-  // viewObject.newroker = await newRokarNumber();
-
-  // const gadiList = await getGadiList();
-  // viewObject.gadiList = gadiList;
   
   res.render('loading',viewObject);
 });

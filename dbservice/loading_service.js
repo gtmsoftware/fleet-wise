@@ -17,7 +17,6 @@ const getLoading = async (rokar) => {
   try {
     const result = await dbConnectionPool.query(query);
     console.log('Loading Entry Fetched :', result.rows);
-    //console.log('Loading Entry Fetched 2:', result.rows);
     return result.rows;
   } catch (error) {
     console.error('Error:', error);
@@ -52,4 +51,28 @@ const saveLoading = async (loaddt, sale_point, buyer, weight, rate, total, cr_dr
   }
 }
 
-module.exports = { getLoading , saveLoading };
+/**
+ * 
+ * @param { Roker Number } rokar 
+ * 
+ * Will Return Loading Record Based on Rokar Number
+ */
+const getLoadingReport = async (time_range) => {
+  console.log("Started :: Get Loading Report");
+  const query = {
+    name: 'get-loading-report',
+    text: 'SELECT sale_point, buyer, cr_dr, vehiclenumber, rokar, loaddt, weight, rate, total FROM fleetwise_schema.loading',
+    values: [],
+  }
+  
+  try {
+    const result = await dbConnectionPool.query(query);
+    console.log('Loading Report Fetched :', result.rows);
+    console.log(typeof(result.rows));
+    return result.rows;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+module.exports = { getLoading , saveLoading , getLoadingReport};
