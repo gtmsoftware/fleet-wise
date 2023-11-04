@@ -16,49 +16,54 @@
         <label for="rokar">Rokar Number (रोकड़):</label><br>
         <select id="rokar" name="rokar" required tabindex="1">
           <optgroup label="Select Rokar Number (रोकड़)">
-            <option value="">---------------</option>
+            <option value="">--Select--</option>
             <% rokerList.forEach(function(rokar){ %>
               <option value="<%= rokar %>"><%= rokar %></option>
             <% }) %>
           </optgroup>
         </select>
-
       </div>
 
       <div class="frm-field">
-
         <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
         <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
           <optgroup label="Select Gadi Number (गाड़ी नंबर)">
-            <option value="">-----------</option>
+            <option value="">--Select--</option>
             <% gadiList.forEach(function(gadi){ %>
               <option value="<%= gadi %>"><%= gadi %></option>
             <% }) %>
           </optgroup>
         </select>
-
       </div>
       
       
       <div class="frm-field">
-
         <label for="unloadingDate">Unloading Date (अनलोडिंग तारीख) :</label><br>
         <input type="datetime-local" id="unloadingDate" name="unloadingDate" value="">
-
-      </div>
-
-      <div class="frm-field">
-
-        <label for="buyer">Buyer (खरीदार):</label><br>
-        <input type="text" id="buyer" name="buyer" value="" required maxlength="100">
-
       </div>
       
       <div class="frm-field">
-
+        <label for="buyer">Buyer (खरीदार):</label><br>
+        <select id="buyer" name="buyer" required tabindex="1">
+          <optgroup label="Select Buyer (खरीदार)">
+            <option value="">--Select--</option>
+            <% buyerNameList.forEach(function(buyer){ %>
+              <option value="<%= buyer.id %>"><%= buyer.buyer_name %></option>
+            <% }) %>
+          </optgroup>
+        </select>
+      </div>
+      
+      <div class="frm-field">
         <label for="ponitSale">Ponit Sale (सेल पॉइंट):</label><br>
-        <input type="text" id="ponitSale" name="ponitSale" value="" required maxlength="100">
-
+        <select id="ponitSale" name="ponitSale" required tabindex="1">
+          <optgroup label="Select Sale Point (सेल पॉइंट)">
+            <option value="">--Select--</option>
+            <% sellerNameList.forEach(function(seller){ %>
+              <option value="<%= seller.id %>"><%= seller.seller_name %></option>
+            <% }) %>
+          </optgroup>
+        </select>
       </div>
 
       <div class="frm-field">

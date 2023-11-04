@@ -40,7 +40,7 @@ const saveUnLoading = async (loaddt, sale_point, buyer, weight, rate, total, cr_
   console.log("Started :: Save UnLoading");
   const query = {
     name: 'save-unloading',
-    text: 'INSERT INTO fleetwise_schema.unloading (loaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+    text: 'INSERT INTO fleetwise_schema.unloading (unloaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
     values: [loaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar],
   }
   

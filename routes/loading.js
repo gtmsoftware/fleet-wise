@@ -3,34 +3,55 @@ const router = express.Router();
 
 const { getLoading, saveLoading} = require('../dbservice/loading_service');
 const { newRokarNumber } = require('../dbservice/common/rokar_generator');
-//const { getGadiList } = require('../dbservice/common/common_service');
 const { getGadiList } = require('../dbservice/gadi_service');
+const { getBuyerNameList } = require('../dbservice/buyer_service');
+const { getSellerNameList } = require('../dbservice/seller_service');
 
 const pageName = 'Loading Entry Page (लोडिंग एंट्री पेज)';
 
-const viewObject = { 
-  title: `${pageName}`,
-  message: `${pageName}`,
-};
+const populateViewObject = async () => {
 
-/* GET Loading Entry Form . */
-router.get('/', async function(req, res, next) {
+  const viewObject = {};
 
-  const record = '';
-
-  viewObject.record = record;
+  viewObject.title = pageName;
+  viewObject.message = pageName;
 
   viewObject.newroker = await newRokarNumber();
 
   const gadiList = await getGadiList();
   viewObject.gadiList = gadiList;
+
+  const buyerNameList = await getBuyerNameList();
+  viewObject.buyerNameList = buyerNameList;
+
+  const sellerNameList = await getSellerNameList();
+  viewObject.sellerNameList = sellerNameList;
+
+  return viewObject;
+};
+
+/* GET Loading Entry Form . */
+router.get('/', async function(req, res, next) {
+
+  const viewObject = await populateViewObject();
+
+  const record = '';
+
+  viewObject.record = record;
+
+  // viewObject.newroker = await newRokarNumber();
+
+  // const gadiList = await getGadiList();
+  // viewObject.gadiList = gadiList;
   
   res.render('loading',viewObject);
 });
 
 
 /* GET users listing. */
-router.get('/:rokar', async function(req, res, next) {
+router.get('/:rokar', async (req, res, next) => {
+
+  const viewObject = await populateViewObject();
 
   if(!req.params.rokar){
     const errorMsg = 'Request with valid Rokar number';
@@ -49,7 +70,7 @@ router.get('/:rokar', async function(req, res, next) {
 
 
 /* SAVE loading Entry. */
-router.post('/', function(req, res, next) {
+router.post('/', async (req, res, next) => {
 
     console.log(`req==>${JSON.stringify(req.body)}`);
 
@@ -57,6 +78,8 @@ router.post('/', function(req, res, next) {
     
     saveLoading(loadingDate, ponitSale, buyer, weight, rate, total, cr_dr, vehicleNumber, rokar);
 
+    const viewObject = await populateViewObject();
+    
     viewObject.message = 'Loading Entry Saved';
 
     res.render('loading', viewObject);
