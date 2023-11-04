@@ -9,22 +9,16 @@
   <body>
     <%- include('common/header'); %>
     <h1 id="message"><%= message %></h1>
-    <div><%= record %>
-    <a href="/loading/2023-NOV-028"> Get Record with rokar</a>
-    </div>
+    <div><%= record %></div>  
     <form id="loadingFrm" method="post" action="/loading">
       
       <div class="frm-field">
-        <br>
         <label for="rokar">Rokar Number (रोकड़):</label><br>
         <input type="text" id="rokar" name="rokar" value="<%= newroker %>" required readonly>
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
-
         <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
           <optgroup label="Select Gadi Number (गाड़ी नंबर)">
             <option value="">-----------</option>
@@ -33,61 +27,45 @@
             <% }) %>
           </optgroup>
         </select>
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="loadingDate">Loading Date (लोडिंग तारीख):</label><br>
         <input type="datetime-local" id="loadingDate" name="loadingDate" value="">
-        <br>
       </div>
       
       <div class="frm-field">
-        <br>
         <label for="ponitSale">Ponit Sale (सेल पॉइंट):</label><br>
         <input type="text" id="ponitSale" name="ponitSale" value="" required maxlength="100">
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="buyer">Buyer (खरीदार) :</label><br>
         <input type="text" id="buyer" name="buyer" value="" required maxlength="100">
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="weight">Weight (Metric-Tons) (वजन मीट्रिक टन ):</label><br>
         <input type="number" min="0.00" max="10000.00" step="0.01" id="weight" name="weight" value="0.00" required>
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="rate">Rate(₹) (रेट) :</label><br>
         <input type="number" min="0" max="100000" step="1" id="rate" name="rate" value="0" required>
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="total">Total (₹) (टोटल):</label><br>
         <input type="number" min="0.00" max="10000.00" step="0.01" id="total" name="total" value="000000.00" readonly>
-        <br>
       </div>
 
       <div class="frm-field">
-        <br>
         <label for="cr_dr">CR(नगद) / DB (उधार) :</label><br><br>
         <input type="radio" id="cr" name="cr_dr" value="CR" checked><label for="cr_dr">CR(नगद) :</label><br>
         <input type="radio" id="dr" name="cr_dr" value="DR"><label for="cr_dr">DB (उधार) :</label>
-        <br>
       </div>
       
       <div class="frm-button">
-        <br>
         <button id="loadingFrmSave">Save (सेव करो)</button>
       </div>
 

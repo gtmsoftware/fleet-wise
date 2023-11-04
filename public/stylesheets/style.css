@@ -11,6 +11,7 @@ a {
 
 .frm-field{
   background-color: hsla(145, 58%, 81%, 0.726);
-  margin: 1%;
+  margin: 1.2em;
+  padding: 1.2em;
   border-radius: 5%;
 }

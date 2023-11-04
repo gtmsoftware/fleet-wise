@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { getLoading, saveLoading} = require('../dbservice/loading_service');
 const { newRokarNumber } = require('../dbservice/common/rokar_generator');
-const { getGadiList } = require('../dbservice/common/common_service');
+const { getGadiList } = require('../dbservice/gadi_service');
 
 const pageName = 'Master Entry Page (मास्टर एंट्री पेज)';
 
