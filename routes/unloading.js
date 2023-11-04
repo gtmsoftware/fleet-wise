@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const { getRokarList, getGadiList } = require('../dbservice/common/common_service');
+const { getRokarList } = require('../dbservice/common/common_service');
+const { getGadiList } = require('../dbservice/gadi_service');
 const { getUnLoading, saveUnLoading} = require('../dbservice/unloading_service');
 
 const pageName = 'Unloading Entry Page (अनलोडिंग एंट्री पेज)';

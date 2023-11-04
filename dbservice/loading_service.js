@@ -1,4 +1,4 @@
-const dbConnectionPool = require('../dbservice/db_pool');
+const dbConnectionPool = require('./common/db_pool');
 
 /**
  * 

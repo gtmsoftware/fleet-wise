@@ -3,10 +3,9 @@ const router = express.Router();
 
 const { getLoading, saveLoading} = require('../dbservice/loading_service');
 const { newRokarNumber } = require('../dbservice/common/rokar_generator');
-//const { getGadiList } = require('../dbservice/common/common_service');
-const { getGadiList } = require('../dbservice/gadi_service');
+const { getGadiList } = require('../dbservice/common/common_service');
 
-const pageName = 'Loading Entry Page (लोडिंग एंट्री पेज)';
+const pageName = 'Master Entry Page (मास्टर एंट्री पेज)';
 
 const viewObject = { 
   title: `${pageName}`,
@@ -25,7 +24,7 @@ router.get('/', async function(req, res, next) {
   const gadiList = await getGadiList();
   viewObject.gadiList = gadiList;
   
-  res.render('loading',viewObject);
+  res.render('master',viewObject);
 });
 
 
@@ -36,7 +35,7 @@ router.get('/:rokar', async function(req, res, next) {
     const errorMsg = 'Request with valid Rokar number';
     viewObject.message = errorMsg;
     console.error('Error:', errorMsg);
-    res.render('loading', viewObject);
+    res.render('master', viewObject);
   }
 
   const recordList = await getLoading(req.params.rokar);
@@ -44,7 +43,7 @@ router.get('/:rokar', async function(req, res, next) {
   viewObject.message = 'Record Found';
   viewObject.record = recordList[0].vehiclenumber;
 
-  res.render('loading', viewObject);
+  res.render('master', viewObject);
 });
 
 
@@ -59,7 +58,7 @@ router.post('/', function(req, res, next) {
 
     viewObject.message = 'Loading Entry Saved';
 
-    res.render('loading', viewObject);
+    res.render('master', viewObject);
   });
 
 

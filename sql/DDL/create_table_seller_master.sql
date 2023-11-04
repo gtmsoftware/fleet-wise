@@ -13,7 +13,9 @@ CREATE TABLE fleetwise_schema.seller_master (
 	mobile2 varchar NULL,
 	whatsapp varchar NULL,
 	credit float4 NULL, -- nagad
-	debit float4 NULL -- Udhar
+	debit float4 NULL, -- Udhar
+	bank_acount_no varchar NULL,
+	upi_id varchar NULL
 );
 
 -- Column comments

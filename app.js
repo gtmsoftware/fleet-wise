@@ -10,6 +10,7 @@ const loadingRouter = require('./routes/loading');
 const unloadingRouter = require('./routes/unloading');
 const reportRouter = require('./routes/report');
 const profileRouter = require('./routes/profile');
+const masterRouter = require('./routes/master');
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.use('/loading', loadingRouter);
 app.use('/unloading', unloadingRouter);
 app.use('/report', reportRouter);
 app.use('/profile', profileRouter);
+app.use('/master', masterRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
