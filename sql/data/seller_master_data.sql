@@ -1,0 +1,5 @@
+INSERT INTO fleetwise_schema.seller_master (seller_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Crasher_1', '', '', '9876543210', '', '9876543210', 0, 0);
+INSERT INTO fleetwise_schema.seller_master (seller_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Crasher_2', '', '', '9876543210', '', '9876543210', 0, 0);
+INSERT INTO fleetwise_schema.seller_master (seller_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Crasher_3', '', '', '7654321098', '', '7654321098', 0, 0);
+INSERT INTO fleetwise_schema.seller_master (seller_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Morang_khadan_1', '', '', '7654321098', '', '7654321098', 0, 0);
+INSERT INTO fleetwise_schema.seller_master (seller_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Morang_khadan_2', '', '', '6543210987', '', '6543210987', 0, 0);

@@ -1,0 +1,5 @@
+INSERT INTO fleetwise_schema.buyer_master (buyer_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Lucknow_Mandi_1', '', '', '9876543210', '', '9876543210', 0, 0);
+INSERT INTO fleetwise_schema.buyer_master (buyer_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Lucknow_Contractor_1', '', '', '9876543210', '', '9876543210', 0, 0);
+INSERT INTO fleetwise_schema.buyer_master (buyer_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Lucknow_Project_1', '', '', '7654321098', '', '7654321098', 0, 0);
+INSERT INTO fleetwise_schema.buyer_master (buyer_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Kanpur_Ringroad_Project', '', '', '7654321098', '', '7654321098', 0, 0);
+INSERT INTO fleetwise_schema.buyer_master (buyer_name, address, gst_number, mobile1, mobile2, whatsapp, credit, debit) VALUES('Kanpur_Ringroad_Project', '', '', '6543210987', '', '6543210987', 0, 0);
