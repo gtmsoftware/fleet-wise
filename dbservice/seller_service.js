@@ -12,7 +12,7 @@ const getSellerNameList = async () => {
     try {
       const result = await dbConnectionPool.query(query);
       result.rows.forEach((d) => dataArray.push(d));
-      console.log(dataArray);
+      //console.log(dataArray);
       return dataArray;
     } catch (error) {
       console.error('Error:', error);

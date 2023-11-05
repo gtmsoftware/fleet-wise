@@ -16,7 +16,7 @@ const getLoading = async (rokar) => {
   
   try {
     const result = await dbConnectionPool.query(query);
-    console.log('Loading Entry Fetched :', result.rows);
+    //console.log('Loading Entry Fetched :', result.rows);
     return result.rows;
   } catch (error) {
     console.error('Error:', error);
@@ -67,9 +67,11 @@ const getLoadingReport = async (time_range) => {
   
   try {
     const result = await dbConnectionPool.query(query);
-    console.log('Loading Report Fetched :', result.rows);
-    console.log(typeof(result.rows));
-    return result.rows;
+    const dataArray = [];
+    result.rows.forEach((d) => dataArray.push(d));
+    // console.log('Loading Report Fetched :', dataArray);
+    // console.log(dataArray.length);
+    return dataArray;
   } catch (error) {
     console.error('Error:', error);
   }

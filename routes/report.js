@@ -37,8 +37,11 @@ router.get('/:reportid', async (req, res, next) => {
   }
 
   //TODO Generate Report Data List and return
-
-  viewObject.reportData = await getLoadingReport();
+  const loadingReport = await getLoadingReport();
+  //console.log(typeof(loadingReport));
+  //console.log(loadingReport.length);
+  //console.log(JSON.stringify(loadingReport));
+  viewObject.reportData = JSON.stringify(loadingReport);
   res.render('report', viewObject);
 
 });
