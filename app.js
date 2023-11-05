@@ -31,6 +31,8 @@ app.use(helmet());
 //   name: 'sessionId'
 // }));
 
+
+// Added Rate Limitter to prevent Bruit-force Attack
 const rateLimiterRedisMiddleware = require('./middleware/rateLimiterRedis');
 // Uncomment it for Production
 // app.use(rateLimiterRedisMiddleware);
