@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('common/meta'); %>
+  </head>
+  <body>
+    <%- include('common/header'); %>
+    <h1><%= message %></h1>
+    <% if (reportData) { %>
+     
+      <div id="report">
+        
+      </div>
+        
+    <% } %>
+
+    <script>
+        const data = JSON.parse('<%- reportData %>');
+        //console.log(data);
+        const container = document.getElementById('report');
+        const hot = new Handsontable(container, {
+          data: data,
+          rowHeaders: true,
+          colHeaders: Object.keys(data[0]),
+          columns: [
+            { data: 'sale_point' },
+            { data: 'buyer' },
+            { data: 'cr_dr' },
+            { data: 'vehiclenumber' },
+            { data: 'rokar' },
+            { data: 'loaddt' },
+            { data: 'weight' },
+            { data: 'rate' },
+            { data: 'total' },
+          ],
+          stretchH: 'all',
+          autoWrapRow: true,
+          columnSorting: true,
+          manualRowMove: true,
+          manualColumnMove: true,
+          manualRowResize: true,
+          dropdownMenu: true,
+          filters: true,
+          height: 'auto',
+          licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
+        });
+    </script>
+    <%- include('common/footer'); %>
+  </body>
+</html>

@@ -17,6 +17,7 @@ const populateViewObject = () => {
 /* GET reports listing. */
 router.get('/', function (req, res, next) {
   const viewObject = populateViewObject();
+  viewObject.reportData = '';
   res.render('report', viewObject);
 });
 
@@ -30,20 +31,29 @@ router.get('/:reportid', async (req, res, next) => {
   const viewObject = populateViewObject();
 
   if (!req.params.reportid) {
-    const errorMsg = 'Request with valid reportid';
+    const errorMsg = 'Request with invalid reportid';
     viewObject.message = errorMsg;
     console.error('Error:', errorMsg);
     res.render('report', viewObject);
   }
 
-  //TODO Generate Report Data List and return
+if(req.params.reportid === 'Loading_Reports'){
   const loadingReport = await getLoadingReport();
-  //console.log(typeof(loadingReport));
-  //console.log(loadingReport.length);
-  //console.log(JSON.stringify(loadingReport));
   viewObject.reportData = JSON.stringify(loadingReport);
-  res.render('report', viewObject);
+  res.render('report_loading', viewObject);
+}else if (req.params.reportid === 'Unoading_Reports') {
+  const loadingReport = await getUnLoadingReport();
+  viewObject.reportData = JSON.stringify(loadingReport);
+  res.render('report_unloading', viewObject);
+} else {
+  viewObject.message = "No Such Report Available";
+  res.render('error_404', viewObject);
+}
 
 });
+
+
+
+//report_unloading
 
 module.exports = router;

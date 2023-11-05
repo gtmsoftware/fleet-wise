@@ -52,4 +52,23 @@ const saveUnLoading = async (loaddt, sale_point, buyer, weight, rate, total, cr_
   }
 }
 
-module.exports = { getUnLoading , saveUnLoading };
+
+const getUnLoadingReport = async (time_range) => {
+  console.log("Started :: Get Loading Report");
+  const query = {
+    name: 'get-unloading-report',
+    text: 'SELECT sale_point, buyer, cr_dr, vehiclenumber, rokar, unloaddt, weight, rate, total FROM fleetwise_schema.unloading',
+    values: [],
+  }
+  
+  try {
+    const result = await dbConnectionPool.query(query);
+    const dataArray = [];
+    result.rows.forEach((d) => dataArray.push(d));
+    return dataArray;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+module.exports = { getUnLoading , saveUnLoading , getUnLoadingReport};

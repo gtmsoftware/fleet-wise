@@ -69,8 +69,6 @@ const getLoadingReport = async (time_range) => {
     const result = await dbConnectionPool.query(query);
     const dataArray = [];
     result.rows.forEach((d) => dataArray.push(d));
-    // console.log('Loading Report Fetched :', dataArray);
-    // console.log(dataArray.length);
     return dataArray;
   } catch (error) {
     console.error('Error:', error);
