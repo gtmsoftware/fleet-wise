@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const helmet = require('helmet');
+const cookieSession = require('cookie-session');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
@@ -13,6 +15,26 @@ const profileRouter = require('./routes/profile');
 const masterRouter = require('./routes/master');
 
 const app = express();
+
+//Security Setup
+
+// 1) Reduce Fingerprinting
+app.disable('x-powered-by');
+
+// 2) Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
+app.use(helmet());
+
+//Use cookies securely
+// app.set('trust proxy', 1) // trust first proxy
+// app.use(session({
+//   secret: 's3Cur3',
+//   name: 'sessionId'
+// }));
+
+const rateLimiterRedisMiddleware = require('./middleware/rateLimiterRedis');
+// Uncomment it for Production
+// app.use(rateLimiterRedisMiddleware);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

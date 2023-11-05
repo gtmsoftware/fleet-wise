@@ -37,18 +37,22 @@ router.get('/:reportid', async (req, res, next) => {
     res.render('report', viewObject);
   }
 
-if(req.params.reportid === 'Loading_Reports'){
-  const loadingReport = await getLoadingReport();
-  viewObject.reportData = JSON.stringify(loadingReport);
-  res.render('report_loading', viewObject);
-}else if (req.params.reportid === 'Unoading_Reports') {
-  const loadingReport = await getUnLoadingReport();
-  viewObject.reportData = JSON.stringify(loadingReport);
-  res.render('report_unloading', viewObject);
-} else {
-  viewObject.message = "No Such Report Available";
-  res.render('error_404', viewObject);
-}
+  if (req.params.reportid === 'Loading_Reports') {
+    const loadingReport = await getLoadingReport();
+    viewObject.reportData = JSON.stringify(loadingReport);
+    res.render('report_loading', viewObject);
+  } else
+
+    if (req.params.reportid === 'Unoading_Reports') {
+      const loadingReport = await getUnLoadingReport();
+      viewObject.reportData = JSON.stringify(loadingReport);
+      res.render('report_unloading', viewObject);
+    }
+
+    else {
+      viewObject.message = "No Such Report Available";
+      res.render('error_404', viewObject);
+    }
 
 });
 
