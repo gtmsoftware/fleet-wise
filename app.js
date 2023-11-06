@@ -35,7 +35,7 @@ app.use(helmet());
 // Added Rate Limitter to prevent Bruit-force Attack
 const rateLimiterRedisMiddleware = require('./middleware/rateLimiterRedis');
 // Uncomment it for Production
-// app.use(rateLimiterRedisMiddleware);
+app.use(rateLimiterRedisMiddleware);
 
 
 // view engine setup

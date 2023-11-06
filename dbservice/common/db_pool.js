@@ -4,7 +4,6 @@ const Pool = require('pg').Pool;
 /**
  * Start Database Connection Pool
  */
-console.log(process.env);
 
 const dbConnectionPool = new Pool({
   host: process.env.DB_HOST,
