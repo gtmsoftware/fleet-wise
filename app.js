@@ -6,6 +6,9 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const cookieSession = require('cookie-session');
 const rateLimit = require('express-rate-limit');
+const session = require('express-session');
+const passport = require('passport');
+
 
 
 const indexRouter = require('./routes/index');
@@ -49,7 +52,7 @@ const limiter = rateLimit({
 })
 
 // Apply the rate limiting middleware to all requests.
-app.use(limiter)
+// app.use(limiter)
 
 
 // view engine setup
@@ -86,5 +89,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Set up session
+app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
+
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 module.exports = app;
