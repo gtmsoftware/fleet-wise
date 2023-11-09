@@ -3,9 +3,8 @@
 // This will load environment variable from '.env' file.
 //This must be imported at very first line of starting of node application
 
-const dotenv = require('dotenv');
-dotenv.config();
-console.log(process.env.DB_USERNAME);
+require('dotenv').config();
+// console.log(process.env);
 /**
  * Module dependencies.
  */
