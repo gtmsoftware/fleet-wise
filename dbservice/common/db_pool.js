@@ -13,7 +13,7 @@ const dbConnectionPool = new Pool({
   database: process.env.DB_DATABASE_NAME,
   max: process.env.DB_MAX,
   idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT_MS,
-  connectionTimeoutMillis: process.env.DB_IDLE_TIMEOUT_MS,
+  connectionTimeoutMillis: process.env.DB_CONNECTION_TIMEOUT_MS,
 });
 
 // Refrence : https://node-postgres.com/apis/pool
