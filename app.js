@@ -18,6 +18,7 @@ const unloadingRouter = require('./routes/unloading');
 const reportRouter = require('./routes/report');
 const profileRouter = require('./routes/profile');
 const masterRouter = require('./routes/master');
+const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -72,6 +73,7 @@ app.use('/unloading', unloadingRouter);
 app.use('/report', reportRouter);
 app.use('/profile', profileRouter);
 app.use('/master', masterRouter);
+app.use('/login', loginRouter);
 
 
 // catch 404 and forward to error handler

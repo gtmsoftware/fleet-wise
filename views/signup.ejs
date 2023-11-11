@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('common/meta'); %>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src="/javascripts/login.js"></script>
+  </head>
+  <body>
+    <!-- <%- include('common/header'); %> -->
+    <h1 id="message"><%= message %></h1>
+    <form id="loginFrm" method="post" action="/login">
+      
+      <div class="frm-field">
+        <label for="email">Email (ईमेल):</label><br>
+        <input type="text" id="email" name="email" value="" required >
+      </div>
+
+      <div class="frm-field">
+        <label for="mobile">Mobile (मोबाइल):</label><br>
+        <input type="text" id="mobile" name="mobile" value="" required >
+      </div>
+
+      <div class="frm-field">
+        <label for="username">username/Email/Mobile (उपयोगकर्ता नाम या ईमेल या मोबाइल):</label><br>
+        <input type="text" id="username" name="username" value="" required >
+      </div>
+
+      <div class="frm-field">
+        <label for="password">Password (पासवर्ड):</label><br>
+        <input type="password" id="password" name="password" value="" required >
+      </div>
+      
+      <div class="frm-button">
+        <button id="loginFrmLogin">SignIn</button>
+      </div>
+
+    </form>
+
+    <script>
+      
+      
+      function calculate (e) {
+          e.preventDefault();
+
+          const weight = document.getElementById("weight").value;
+          const rate = document.getElementById("rate").value;
+          total.value = weight * rate;
+      }
+
+      total.addEventListener("focus", calculate);
+
+    </script>
+    
+    <%- include('common/footer'); %>
+  </body>
+</html>
