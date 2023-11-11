@@ -28,7 +28,69 @@ const app = express();
 app.disable('x-powered-by');
 
 // 2) Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-app.use(helmet());
+// app.use(helmet());
+
+/**
+ * by default helmet will block your page scripts e.g. AJAX requests, so when using defaults you will get error such as:
+ *  Content Security Policy: The page's settings blocked the loading of a resource at inline ("default/src") or similar,
+ *  to fix this I needed to write helmet options manually.
+ */
+
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    "block-all-mixed-content": true,
+    "upgrade-insecure-requests": true,
+    directives: {
+      "default-src": [
+          "'self'"
+      ],
+      "base-uri": "'self'",
+      "font-src": [
+          "'self'",
+          "https:",
+          "data:"
+      ],
+      "frame-ancestors": [
+          "'self'"
+      ],
+      "img-src": [
+          "'self'",
+          "data:"
+      ],
+      "object-src": [
+          "'none'"
+      ],
+      "script-src": [
+          "'self'",
+          "https://cdnjs.cloudflare.com"
+      ],
+      "script-src-attr": "'none'",
+      "style-src": [
+          "'self'",
+          "https://cdnjs.cloudflare.com"
+      ],
+    },
+  }),
+  helmet.dnsPrefetchControl({
+      allow: true
+  }),
+  helmet.frameguard({
+      action: "deny"
+  }),
+  helmet.hidePoweredBy(),
+  helmet.hsts({
+      maxAge: 123456,
+      includeSubDomains: false
+  }),
+  helmet.ieNoOpen(),
+  helmet.noSniff(),
+  helmet.referrerPolicy({
+      policy: [ "origin", "unsafe-url" ]
+  }),
+  helmet.xssFilter()
+);
+
 
 //Use cookies securely
 // app.set('trust proxy', 1) // trust first proxy

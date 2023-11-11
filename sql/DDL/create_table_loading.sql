@@ -15,7 +15,8 @@ CREATE TABLE fleetwise_schema.loading (
 	loaddt timestamp NOT NULL,
 	weight float4 NOT NULL,
 	rate float4 NOT NULL,
-	total float4 NOT NULL
+	total float4 NOT NULL,
+	CONSTRAINT loading_un UNIQUE (rokar)
 );
 COMMENT ON TABLE fleetwise_schema.loading IS 'Store Loading Table Data';
 
