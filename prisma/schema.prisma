@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model buyer_master {
+  id           Int     @unique(map: "buyer_master_un") @default(autoincrement())
+  buyer_name   String  @db.VarChar
+  address      String  @db.VarChar
+  gst_number   String? @db.VarChar
+  mobile1      String? @db.VarChar
+  mobile2      String? @db.VarChar
+  whatsapp     String? @db.VarChar
+  credit       Float?  @db.Real
+  debit        Float?  @db.Real
+  bank_account String? @db.VarChar
+  upi          String? @db.VarChar
+
+  @@ignore
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model loading {
+  sale_point    String   @db.VarChar
+  buyer         String   @db.VarChar
+  cr_dr         String   @db.VarChar
+  vehiclenumber String   @db.VarChar
+  rokar         String   @unique(map: "loading_un") @db.VarChar
+  loadingid     Int      @default(autoincrement())
+  timestamp     DateTime @default(now()) @db.Timestamp(6)
+  loaddt        DateTime @db.Timestamp(6)
+  weight        Float    @db.Real
+  rate          Float    @db.Real
+  total         Float    @db.Real
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model rokar_counter {
+  current_month String @db.VarChar
+  counter_value Int
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model seller_master {
+  id             Int     @default(autoincrement())
+  seller_name    String  @db.VarChar
+  address        String  @db.VarChar
+  gst_number     String? @db.VarChar
+  mobile1        String? @db.VarChar
+  mobile2        String? @db.VarChar
+  whatsapp       String? @db.VarChar
+  credit         Float?  @db.Real
+  debit          Float?  @db.Real
+  bank_acount_no String? @db.VarChar
+  upi_id         String? @db.VarChar
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model unloading {
+  sale_point    String   @db.VarChar
+  buyer         String   @db.VarChar
+  cr_dr         String   @db.VarChar
+  vehiclenumber String   @db.VarChar
+  rokar         String   @db.VarChar
+  unloadingid   Int      @default(autoincrement())
+  timestamp     DateTime @default(now()) @db.Timestamp(6)
+  unloaddt      DateTime @db.Timestamp(6)
+  weight        Float    @db.Real
+  rate          Float    @db.Real
+  total         Float    @db.Real
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model vehicle_master {
+  gadi_number String @db.VarChar
+
+  @@ignore
+}

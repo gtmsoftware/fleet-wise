@@ -6,7 +6,7 @@ const dbConnectionPool = require('./common/db_pool');
  * 
  * Will Return Loading Record Based on Rokar Number
  */
-const getLoading = async (rokar) => {
+const getLoading2 = async (rokar) => {
   console.log("Started :: Get Loading");
   const query = {
     name: 'get-loading-by-rokar',
@@ -18,6 +18,33 @@ const getLoading = async (rokar) => {
     const result = await dbConnectionPool.query(query);
     //console.log('Loading Entry Fetched :', result.rows);
     return result.rows;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+const getLoading = async () => {
+  const dataArray = [];
+
+  const prisma = new PrismaClient();
+
+  try {
+    // const loadings = await prisma.loading.findMany();
+    // const buyer_master = await prisma.buyer_master.findMany();
+  const loadings = await prisma.loading.findMany();
+
+    console.log('start');
+    console.log(loadings);
+    // console.log(buyer_master);
+    console.log('end');
+
+    dataArray.push({
+      id: 'mockID',
+      buyer_name: 'mock_buyer'
+    });
+
+    return dataArray;
+
   } catch (error) {
     console.error('Error:', error);
   }
