@@ -40,12 +40,38 @@ async function initializeCounter() {
 
 
 async function updateCounter(counterValue) {
+
   try {
-    await pool.query('UPDATE fleetwise_schema.rokar_counter SET counter_value = $1 WHERE current_month = $2', [counterValue, new Date().getMonth()]);
+    const client = await pool.connect();
+
+    try {
+      // update incremented counter value for the current monthin DB
+      const insertResult = await client.query('UPDATE fleetwise_schema.rokar_counter SET counter_value = $1 WHERE current_month = $2', [counterValue, new Date().getMonth()],);
+      
+      // Commit the transaction and return the inserted counter value
+      await client.query('COMMIT');
+
+    } finally {
+      // Release the client connection back to the pool
+      client.release();
+    }
   } catch (error) {
+    // Rollback the transaction in case of an error
     console.error('Error:', error);
     throw error;
   }
+
+
+
+
+
+
+  // try {
+  //   await pool.query('UPDATE fleetwise_schema.rokar_counter SET counter_value = $1 WHERE current_month = $2', [counterValue, new Date().getMonth()]);
+  // } catch (error) {
+  //   console.error('Error:', error);
+  //   throw error;
+  // }
 }
 
 function createIncrementalFunction() {
@@ -72,7 +98,7 @@ const getLocalDateString = () => {
   return `${year}-${month.toUpperCase()}`;
 };
 
-const newRokarNumber = async () => {
+const newRokarNumber2 = async () => {
   try {
     // Create an incremental function
     const getNextIncrement = createIncrementalFunction();
@@ -91,5 +117,33 @@ const newRokarNumber = async () => {
     throw error;
   }
 };
+
+
+//SELECT get_next_rokar_id();
+
+const newRokarNumber = async () => {
+  try {
+    const client = await pool.connect();
+
+    try {
+      // update incremented counter value for the current monthin DB
+      const rokarIdResult = await client.query('SELECT fleetwise_schema.get_next_rokar_id() as next_rokar_id');
+
+      const nextRokarId = rokarIdResult.rows[0].next_rokar_id;
+
+      console.log('Next Rokar ID:', nextRokarId);
+
+      return nextRokarId;
+
+    } finally {
+      // Release the client connection back to the pool
+      client.release();
+    }
+  } catch (error) {
+    // Rollback the transaction in case of an error
+    console.error('Error:', error);
+    throw error;
+  }
+}
 
 module.exports = { newRokarNumber };
