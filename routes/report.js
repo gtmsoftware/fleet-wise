@@ -14,6 +14,15 @@ const populateViewObject = () => {
 };
 
 
+const getTotalCollection = (dataList) => {
+  let sum = 0.0;
+  for(let i = 0; i < dataList.length; i++) {
+    sum = sum + dataList[i].total;
+  }
+  return sum;
+};
+
+
 /* GET reports listing. */
 router.get('/', function (req, res, next) {
   const viewObject = populateViewObject();
@@ -46,8 +55,9 @@ router.get('/:reportid', async (req, res, next) => {
 
     viewObject.message = 'Loading Report (लोडिंग रिपोर्ट)';
 
-    const loadingReport = await getLoadingReport();
-    res.locals.loadingReport = loadingReport;
+    const dataList = await getLoadingReport();
+    res.locals.totalCollection = getTotalCollection(dataList);
+    res.locals.dataList = dataList;
     res.render('report_loading', viewObject);
   } else
 
@@ -55,8 +65,9 @@ router.get('/:reportid', async (req, res, next) => {
 
       viewObject.message = 'Unloading Report (अनलोडिंग रिपोर्ट)';
 
-      const loadingReport = await getUnLoadingReport();
-      res.locals.loadingReport = loadingReport;
+      const dataList = await getUnLoadingReport();
+      res.locals.totalCollection = getTotalCollection(dataList);
+      res.locals.dataList = dataList;
       res.render('report_unloading', viewObject);
     }
 

@@ -32,19 +32,19 @@
       </thead>
       <tbody>
         <!-- Add data rows here -->
-        <% if (loadingReport  &&  loadingReport.length > 0 ) { %>
-        <% for(let i = 0; i < loadingReport.length; i++) { %>
+        <% if (dataList  &&  dataList.length > 0 ) { %>
+        <% for(let i = 0; i < dataList.length; i++) { %>
           <tr>
             <td><%= i + 1 %></td>
-            <td><%= loadingReport[i].seller %></td>
-            <td><%= loadingReport[i].buyer %></td>
-            <td><%= loadingReport[i].cr_dr %></td>
-            <td><%= loadingReport[i].vehiclenumber %></td>
-            <td><%= loadingReport[i].rokar %></td>
-            <td><%= loadingReport[i].loaddt %></td>
-            <td><%= loadingReport[i].weight %></td>
-            <td><%= loadingReport[i].rate %></td>
-            <td><%= loadingReport[i].total %></td>
+            <td><%= dataList[i].seller %></td>
+            <td><%= dataList[i].buyer %></td>
+            <td><%= dataList[i].cr_dr %></td>
+            <td><%= dataList[i].vehiclenumber %></td>
+            <td><%= dataList[i].rokar %></td>
+            <td><%= dataList[i].loaddt %></td>
+            <td><%= dataList[i].weight %></td>
+            <td><%= dataList[i].rate %></td>
+            <td><%= dataList[i].total %></td>
           </tr>
         <% } %>
         <% } %>
@@ -55,15 +55,15 @@
             <tfoot> 
               <tr> 
                   <th>Total</th>
-                  <td>₹180</td> 
-                  <td>₹180</td> 
-                  <td>₹255</td> 
-                  <td>₹210</td> 
-                  <td>₹340</td> 
-                  <td>₹160</td>
-                  <td>₹160</td> 
-                  <td>₹160</td>
-                  <td>₹160</td>
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td>
+                  <td>--</td> 
+                  <td>--</td>
+                  <td><%=totalCollection%></td>
               </tr> 
           </tfoot> 
     </table>
