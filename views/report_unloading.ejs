@@ -3,10 +3,11 @@
   <head>
     <title><%= title %></title>
     <%- include('common/meta'); %>
-  
+    <link rel='stylesheet' type='text/css' href='/stylesheets/report.css' />
+    <script src="/javascripts/report.js"></script>
 
 
-    <style> 
+    <!-- <style> 
       thead, 
       tfoot { 
           background-color: green; 
@@ -21,25 +22,29 @@
       td { 
           text-align: center; 
       } 
-  </style> 
+  </style>  -->
 
   </head>
   <body>
     <%- include('common/header'); %>
     <h1><%= message %></h1>
-    <table id="report" border cellspacing="0">
+    <nav>
+      <a href="/report/Loading_Reports">Loading Reports</a> |
+      <a href="/report/Unoading_Reports">Unoading Reports</a>
+    </nav>
+    <table id="report" class="reoprt">
       <thead>
         <tr>
-          <th>Serial</th>
-          <th>sale_point</th>
-          <th>buyer</th>
-          <th>cr_dr</th>
-          <th>vehiclenumber</th>
-          <th>rokar</th>
-          <th>loaddt</th>
-          <th>weight</th>
-          <th>rate</th>
-          <th>total</th>
+          <th>Serial (क्रम-संख्या)</th>
+          <th>Ponit Sale (सेल पॉइंट)</th>
+          <th>Buyer (खरीदार)</th>
+          <th>CR(नगद)/DB (उधार)</th>
+          <th>Vehicle Number (गाड़ी नंबर)</th>
+          <th>Rokar Number (रोकड़)</th>
+          <th>Unloading Date (अनलोडिंग तारीख)</th>
+          <th>Weight (Metric-Tons) (वजन मीट्रिक टन )</th>
+          <th>Rate(₹) (रेट)</th>
+          <th>Total (₹) (टोटल)</th>
           <!-- Add more columns as needed -->
         </tr>
       </thead>
@@ -48,13 +53,13 @@
         <% if (loadingReport  &&  loadingReport.length > 0 ) { %>
         <% for(let i = 0; i < loadingReport.length; i++) { %>
           <tr>
-            <td><%= i %></td>
-            <td><%= loadingReport[i].sale_point %></td>
+            <td><%= i + 1 %></td>
+            <td><%= loadingReport[i].seller %></td>
             <td><%= loadingReport[i].buyer %></td>
             <td><%= loadingReport[i].cr_dr %></td>
             <td><%= loadingReport[i].vehiclenumber %></td>
             <td><%= loadingReport[i].rokar %></td>
-            <td><%= loadingReport[i].loaddt %></td>
+            <td><%= loadingReport[i].unloaddt %></td>
             <td><%= loadingReport[i].weight %></td>
             <td><%= loadingReport[i].rate %></td>
             <td><%= loadingReport[i].total %></td>

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 1%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: hsla(203, 16%, 72%, 0.726);
 }
@@ -14,4 +14,8 @@ a {
   margin: 1.2em;
   padding: 1.2em;
   border-radius: 5%;
+}
+
+.link-btn{
+font-weight: bold;
 }

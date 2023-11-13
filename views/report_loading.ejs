@@ -9,19 +9,24 @@
   <body>
     <%- include('common/header'); %>
     <h1><%= message %></h1>
+    <nav>
+      <a href="/report/Loading_Reports">Loading Reports</a> |
+      <a href="/report/Unoading_Reports">Unoading Reports</a>
+    </nav>
+    <!-- <a href="/report/" class="link-btn">Back</a> -->
     <table id="report" class="reoprt">
       <thead>
         <tr>
-          <th>Serial</th>
-          <th>sale_point</th>
-          <th>buyer</th>
-          <th>cr_dr</th>
-          <th>vehiclenumber</th>
-          <th>rokar</th>
-          <th>loaddt</th>
-          <th>weight</th>
-          <th>rate</th>
-          <th>total</th>
+          <th>Serial (क्रम-संख्या)</th>
+          <th>Ponit Sale (सेल पॉइंट)</th>
+          <th>Buyer (खरीदार)</th>
+          <th>CR(नगद)/DB (उधार)</th>
+          <th>Vehicle Number (गाड़ी नंबर)</th>
+          <th>Rokar Number (रोकड़)</th>
+          <th>Loading Date (लोडिंग तारीख)</th>
+          <th>Weight (Metric-Tons) (वजन मीट्रिक टन )</th>
+          <th>Rate(₹) (रेट)</th>
+          <th>Total (₹) (टोटल)</th>
           <!-- Add more columns as needed -->
         </tr>
       </thead>
@@ -30,8 +35,8 @@
         <% if (loadingReport  &&  loadingReport.length > 0 ) { %>
         <% for(let i = 0; i < loadingReport.length; i++) { %>
           <tr>
-            <td><%= i %></td>
-            <td><%= loadingReport[i].sale_point %></td>
+            <td><%= i + 1 %></td>
+            <td><%= loadingReport[i].seller %></td>
             <td><%= loadingReport[i].buyer %></td>
             <td><%= loadingReport[i].cr_dr %></td>
             <td><%= loadingReport[i].vehiclenumber %></td>

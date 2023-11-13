@@ -57,7 +57,10 @@ const getUnLoadingReport = async (time_range) => {
   console.log("Started :: Get Loading Report");
   const query = {
     name: 'get-unloading-report',
-    text: 'SELECT sale_point, buyer, cr_dr, vehiclenumber, rokar, unloaddt, weight, rate, total FROM fleetwise_schema.unloading',
+    text: `SELECT sm.seller_name as seller , bm.buyer_name as buyer, ul.cr_dr, ul.vehiclenumber, ul.rokar, ul.unloaddt, ul.weight, ul.rate, ul.total FROM fleetwise_schema.unloading ul 
+    inner join fleetwise_schema.buyer_master bm  on ul.buyer  = bm.id 
+    inner join fleetwise_schema.seller_master sm on ul.sale_point  = sm.id
+    order by ul.unloaddt desc`,
     values: [],
   }
   

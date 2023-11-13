@@ -43,17 +43,19 @@ router.get('/:reportid', async (req, res, next) => {
   }
 
   if (req.params.reportid === 'Loading_Reports') {
-    const loadingReport = await getLoadingReport();
-    //viewObject.reportData = JSON.stringify(loadingReport);
 
+    viewObject.message = 'Loading Report (लोडिंग रिपोर्ट)';
+
+    const loadingReport = await getLoadingReport();
     res.locals.loadingReport = loadingReport;
     res.render('report_loading', viewObject);
   } else
 
     if (req.params.reportid === 'Unoading_Reports') {
-      const loadingReport = await getUnLoadingReport();
-      viewObject.reportData = JSON.stringify(loadingReport);
 
+      viewObject.message = 'Unloading Report (अनलोडिंग रिपोर्ट)';
+
+      const loadingReport = await getUnLoadingReport();
       res.locals.loadingReport = loadingReport;
       res.render('report_unloading', viewObject);
     }

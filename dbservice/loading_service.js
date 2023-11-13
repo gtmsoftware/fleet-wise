@@ -88,7 +88,10 @@ const getLoadingReport = async (time_range) => {
   console.log("Started :: Get Loading Report");
   const query = {
     name: 'get-loading-report',
-    text: 'SELECT sale_point, buyer, cr_dr, vehiclenumber, rokar, loaddt, weight, rate, total FROM fleetwise_schema.loading',
+    text: ` SELECT sm.seller_name as seller, bm.buyer_name as buyer, l.cr_dr, l.vehiclenumber, l.rokar, l.loaddt, l.weight, l.rate, l.total FROM fleetwise_schema.loading l 
+    inner join fleetwise_schema.buyer_master bm  on l.buyer  = bm.id 
+    inner join fleetwise_schema.seller_master sm on l.sale_point  = sm.id
+    order by l.loaddt desc`,
     values: [],
   }
   
