@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const helmet = require('helmet');
+const crypto = require('crypto');
 const cookieSession = require('cookie-session');
 const rateLimit = require('express-rate-limit');
 const session = require('express-session');
@@ -19,6 +20,11 @@ const reportRouter = require('./routes/report');
 const profileRouter = require('./routes/profile');
 const masterRouter = require('./routes/master');
 const loginRouter = require('./routes/login');
+
+
+const nonceMiddleware = require('./middleware/randomNonce');
+
+const { generateNonce, getCSPHeader } = require('./config_csp');
 
 const app = express();
 
@@ -36,60 +42,68 @@ app.disable('x-powered-by');
  *  to fix this I needed to write helmet options manually.
  */
 
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: false,
-    "block-all-mixed-content": true,
-    "upgrade-insecure-requests": true,
-    directives: {
-      "default-src": [
-          "'self'"
-      ],
-      "base-uri": "'self'",
-      "font-src": [
-          "'self'",
-          "https:",
-          "data:"
-      ],
-      "frame-ancestors": [
-          "'self'"
-      ],
-      "img-src": [
-          "'self'",
-          "data:"
-      ],
-      "object-src": [
-          "'none'"
-      ],
-      "script-src": [
-          "'self'",
-          "https://cdnjs.cloudflare.com"
-      ],
-      "script-src-attr": "'none'",
-      "style-src": [
-          "'self'",
-          "https://cdnjs.cloudflare.com"
-      ],
-    },
-  }),
-  helmet.dnsPrefetchControl({
-      allow: true
-  }),
-  helmet.frameguard({
-      action: "deny"
-  }),
-  helmet.hidePoweredBy(),
-  helmet.hsts({
-      maxAge: 123456,
-      includeSubDomains: false
-  }),
-  helmet.ieNoOpen(),
-  helmet.noSniff(),
-  helmet.referrerPolicy({
-      policy: [ "origin", "unsafe-url" ]
-  }),
-  helmet.xssFilter()
-);
+// Use Nonce Custom Middleware to Generate a random nonce
+//app.use(nonceMiddleware);
+
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     useDefaults: false,
+//     "block-all-mixed-content": true,
+//     "upgrade-insecure-requests": true,
+//     directives: {
+//       "default-src": [
+//           "'self'"
+//       ],
+//       "base-uri": "'self'",
+//       "font-src": [
+//           "'self'",
+//           "https:",
+//           "data:"
+//       ],
+//       "frame-ancestors": [
+//           "'self'"
+//       ],
+//       "img-src": [
+//           "'self'",
+//           "data:"
+//       ],
+//       "object-src": [
+//           "'none'"
+//       ],
+//     //   "script-src": [
+//     //       "'self'",
+//     //       "https://cdnjs.cloudflare.com",
+//     //       "https://code.jquery.com",
+//     //       "https://cdn.datatables.net",
+//     //       `nonce-${generateNonce()}`
+//     //   ],
+//     //   "script-src-attr": "'none'",
+//     //   "style-src": [
+//     //       "'self'",
+//     //       "https://cdnjs.cloudflare.com",
+//     //       "https://code.jquery.com",
+//     //       "https://cdn.datatables.net"
+//     //   ],
+//     },
+//   }),
+//   helmet.dnsPrefetchControl({
+//       allow: true
+//   }),
+//   helmet.frameguard({
+//       action: "deny"
+//   }),
+//   helmet.hidePoweredBy(),
+//   helmet.hsts({
+//       maxAge: 123456,
+//       includeSubDomains: false
+//   }),
+//   helmet.ieNoOpen(),
+//   helmet.noSniff(),
+//   helmet.referrerPolicy({
+//       policy: [ "origin", "unsafe-url" ]
+//   }),
+//   helmet.xssFilter()
+// );
 
 
 //Use cookies securely

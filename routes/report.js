@@ -17,6 +17,9 @@ const populateViewObject = () => {
 /* GET reports listing. */
 router.get('/', function (req, res, next) {
   const viewObject = populateViewObject();
+
+  viewObject.nonce =  res.locals.nonce; // add CSP policy for this page
+
   viewObject.reportData = '';
   res.render('report', viewObject);
 });
@@ -30,6 +33,8 @@ router.get('/:reportid', async (req, res, next) => {
 
   const viewObject = populateViewObject();
 
+  viewObject.nonce =  res.locals.nonce; // add CSP policy for this page
+
   if (!req.params.reportid) {
     const errorMsg = 'Request with invalid reportid';
     viewObject.message = errorMsg;
@@ -39,13 +44,17 @@ router.get('/:reportid', async (req, res, next) => {
 
   if (req.params.reportid === 'Loading_Reports') {
     const loadingReport = await getLoadingReport();
-    viewObject.reportData = JSON.stringify(loadingReport);
+    //viewObject.reportData = JSON.stringify(loadingReport);
+
+    res.locals.loadingReport = loadingReport;
     res.render('report_loading', viewObject);
   } else
 
     if (req.params.reportid === 'Unoading_Reports') {
       const loadingReport = await getUnLoadingReport();
       viewObject.reportData = JSON.stringify(loadingReport);
+
+      res.locals.loadingReport = loadingReport;
       res.render('report_unloading', viewObject);
     }
 

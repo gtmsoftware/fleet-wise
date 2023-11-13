@@ -3,49 +3,83 @@
   <head>
     <title><%= title %></title>
     <%- include('common/meta'); %>
+  
+
+
+    <style> 
+      thead, 
+      tfoot { 
+          background-color: green; 
+          color: white; 
+      } 
+
+      tr th { 
+          background-color: green; 
+          color: white; 
+      } 
+
+      td { 
+          text-align: center; 
+      } 
+  </style> 
+
   </head>
   <body>
     <%- include('common/header'); %>
     <h1><%= message %></h1>
-    <% if (reportData) { %>
-     
-      <div id="report">
-        
-      </div>
-        
-    <% } %>
+    <table id="report" border cellspacing="0">
+      <thead>
+        <tr>
+          <th>Serial</th>
+          <th>sale_point</th>
+          <th>buyer</th>
+          <th>cr_dr</th>
+          <th>vehiclenumber</th>
+          <th>rokar</th>
+          <th>loaddt</th>
+          <th>weight</th>
+          <th>rate</th>
+          <th>total</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Add data rows here -->
+        <% if (loadingReport  &&  loadingReport.length > 0 ) { %>
+        <% for(let i = 0; i < loadingReport.length; i++) { %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= loadingReport[i].sale_point %></td>
+            <td><%= loadingReport[i].buyer %></td>
+            <td><%= loadingReport[i].cr_dr %></td>
+            <td><%= loadingReport[i].vehiclenumber %></td>
+            <td><%= loadingReport[i].rokar %></td>
+            <td><%= loadingReport[i].loaddt %></td>
+            <td><%= loadingReport[i].weight %></td>
+            <td><%= loadingReport[i].rate %></td>
+            <td><%= loadingReport[i].total %></td>
+          </tr>
+        <% } %>
+        <% } %>
+      </tbody>
 
-    <script>
-        const data = JSON.parse('<%- reportData %>');
-        //console.log(data);
-        const container = document.getElementById('report');
-        const hot = new Handsontable(container, {
-          data: data,
-          rowHeaders: true,
-          colHeaders: Object.keys(data[0]),
-          columns: [
-            { data: 'sale_point' },
-            { data: 'buyer' },
-            { data: 'cr_dr' },
-            { data: 'vehiclenumber' },
-            { data: 'rokar' },
-            { data: 'loaddt', type: 'date', dateFormat: 'M/D/YYYY' },
-            { data: 'weight' },
-            { data: 'rate' },
-            { data: 'total' },
-          ],
-          stretchH: 'all',
-          autoWrapRow: true,
-          columnSorting: true,
-          manualRowMove: true,
-          manualColumnMove: true,
-          manualRowResize: true,
-          dropdownMenu: true,
-          filters: true,
-          height: 'auto',
-          licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
-        });
-    </script>
+      <!-- tfoot tag specifies the footer of  
+            this table and starts here -->
+            <tfoot> 
+              <tr> 
+                  <th>Total</th>
+                  <td>₹180</td> 
+                  <td>₹180</td> 
+                  <td>₹255</td> 
+                  <td>₹210</td> 
+                  <td>₹340</td> 
+                  <td>₹160</td>
+                  <td>₹160</td> 
+                  <td>₹160</td>
+                  <td>₹160</td>
+              </tr> 
+          </tfoot> 
+    </table>
     <%- include('common/footer'); %>
   </body>
 </html>

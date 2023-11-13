@@ -32,6 +32,8 @@
     "compress": "^0.99.0",
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.0.0",
+    "datatables.net": "^1.13.7",
+    "datatables.net-bs4": "^1.13.7",
     "debug": "^4.3.4",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
