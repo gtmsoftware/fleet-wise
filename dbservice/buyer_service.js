@@ -2,7 +2,7 @@ const dbConnectionPool = require('./common/db_pool');
 const { PrismaClient } = require('@prisma/client');
 
 
-const getBuyerNameList2 = async () => {
+const getBuyerNameList = async () => {
 
   const dataArray = [];
   const query = {
@@ -20,7 +20,7 @@ const getBuyerNameList2 = async () => {
   }
 }
 
-const getBuyerNameList = async () => {
+const getBuyerNameList2 = async () => {
   const dataArray = [];
 
   const prisma = new PrismaClient();
