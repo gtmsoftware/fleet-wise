@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { getRokarList } = require('../dbservice/common/common_service');
-const { getGadiList } = require('../dbservice/gadi_service');
+const { getGadiList, getGadiByRokar, getGadiRokarList } = require('../dbservice/gadi_service');
 const { getBuyerNameList } = require('../dbservice/buyer_service');
 const { getSellerNameList } = require('../dbservice/seller_service');
 
@@ -22,8 +22,7 @@ const populateViewObject = async () => {
   const rokerList = await getRokarList();
   viewObject.rokerList = rokerList;
 
-  const gadiList = await getGadiList();
-  viewObject.gadiList = gadiList;
+  
 
   const buyerNameList = await getBuyerNameList();
   viewObject.buyerNameList = buyerNameList;
@@ -39,8 +38,13 @@ router.get('/', async (req, res, next) => {
 
   const viewObject = await populateViewObject();
 
-  viewObject.record = '';
+  res.locals.gadiList = await getGadiRokarList();
 
+  // Specify the selected item (e.g., 'Banana')
+  // const selectedRokar = 'Banana';
+
+
+  viewObject.record = '';
   res.render('unloading', viewObject);
 
   return viewObject;
@@ -51,6 +55,8 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   
   const viewObject = await populateViewObject();
+
+
   
   console.log(`req==>${JSON.stringify(req.body)}`);
 
@@ -59,6 +65,8 @@ router.post('/', async (req, res, next) => {
     saveUnLoading(unloadingDate, ponitSale, buyer, weight, rate, total, cr_dr, vehicleNumber, rokar);
 
     viewObject.message = 'Unloading Entry Saved';
+
+    res.locals.gadiList = await getGadiRokarList();
 
   res.render('unloading', viewObject);
 });

@@ -14,7 +14,7 @@
       <div class="frm-field">
 
         <label for="rokar">Rokar Number (रोकड़):</label><br>
-        <select id="rokar" name="rokar" required tabindex="1">
+        <select id="rokar" name="rokar" required tabindex="1" onchange="updateGadiNumber()">
           <optgroup label="Select Rokar Number (रोकड़)">
             <option value="">--Select--</option>
             <% rokerList.forEach(function(rokar){ %>
@@ -23,14 +23,14 @@
           </optgroup>
         </select>
       </div>
-
+      <!-- <%- JSON.stringify(gadiList) %> -->
       <div class="frm-field">
         <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
         <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
           <optgroup label="Select Gadi Number (गाड़ी नंबर)">
             <option value="">--Select--</option>
-            <% gadiList.forEach(function(gadi){ %>
-              <option value="<%= gadi %>"><%= gadi %></option>
+            <% gadiList.forEach((gadi)=>{ %>
+              <option value="<%- gadi.rokar_num %>"><%- gadi.gadi_num %></option>
             <% }) %>
           </optgroup>
         </select>
@@ -111,6 +111,27 @@
         total.value = weight * rate;
       }
       total.addEventListener("focus", calculate);
+
+
+      function updateGadiNumber() {
+      var rokarSelect = document.getElementById('rokar');
+      var gadiNumberSelect = document.getElementById('vehicleNumber');
+      var selectedRokar = rokar.value;
+
+      // Clear existing options
+      gadiNumberSelect.innerHTML = '<option value="">----------</option>';
+
+      if (selectedRokar) {
+        // Populate Gadi Number based on the selected rokar
+        const gadiList = gadiList[selectedRokar];
+        gadiList.forEach(function (gadi) {
+          var option = document.createElement('option');
+          option.value = gadi.gadi_num;
+          option.text = gadi.gadi_num;
+          gadiNumberSelect.add(option);
+        });
+      }
+    }
 
     </script>
     <%- include('common/footer'); %>
