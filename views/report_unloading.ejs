@@ -56,7 +56,7 @@
             <td><%= i + 1 %></td>
             <td><%= dataList[i].seller %></td>
             <td><%= dataList[i].buyer %></td>
-            <td><%= dataList[i].cr_dr %></td>
+            <td><%= dataList[i].cr_dr == 'CR' ? 'नगद' : 'उधार' %></td>
             <td><%= dataList[i].vehiclenumber %></td>
             <td><%= dataList[i].rokar %></td>
             <td><%= dataList[i].unloaddt %></td>
