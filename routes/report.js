@@ -14,9 +14,21 @@ const populateViewObject = () => {
 };
 
 
+const getTotalCollection = (dataList) => {
+  let sum = 0.0;
+  for(let i = 0; i < dataList.length; i++) {
+    sum = sum + dataList[i].total;
+  }
+  return sum;
+};
+
+
 /* GET reports listing. */
 router.get('/', function (req, res, next) {
   const viewObject = populateViewObject();
+
+  viewObject.nonce =  res.locals.nonce; // add CSP policy for this page
+
   viewObject.reportData = '';
   res.render('report', viewObject);
 });
@@ -30,6 +42,8 @@ router.get('/:reportid', async (req, res, next) => {
 
   const viewObject = populateViewObject();
 
+  viewObject.nonce =  res.locals.nonce; // add CSP policy for this page
+
   if (!req.params.reportid) {
     const errorMsg = 'Request with invalid reportid';
     viewObject.message = errorMsg;
@@ -38,14 +52,22 @@ router.get('/:reportid', async (req, res, next) => {
   }
 
   if (req.params.reportid === 'Loading_Reports') {
-    const loadingReport = await getLoadingReport();
-    viewObject.reportData = JSON.stringify(loadingReport);
+
+    viewObject.message = 'Loading Report (लोडिंग रिपोर्ट)';
+
+    const dataList = await getLoadingReport();
+    res.locals.totalCollection = getTotalCollection(dataList);
+    res.locals.dataList = dataList;
     res.render('report_loading', viewObject);
   } else
 
     if (req.params.reportid === 'Unoading_Reports') {
-      const loadingReport = await getUnLoadingReport();
-      viewObject.reportData = JSON.stringify(loadingReport);
+
+      viewObject.message = 'Unloading Report (अनलोडिंग रिपोर्ट)';
+
+      const dataList = await getUnLoadingReport();
+      res.locals.totalCollection = getTotalCollection(dataList);
+      res.locals.dataList = dataList;
       res.render('report_unloading', viewObject);
     }
 

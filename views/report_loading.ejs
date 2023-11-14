@@ -3,49 +3,65 @@
   <head>
     <title><%= title %></title>
     <%- include('common/meta'); %>
+    <link rel='stylesheet' type='text/css' href='/stylesheets/report.css' />
+    <script src="/javascripts/report.js"></script>
   </head>
   <body>
     <%- include('common/header'); %>
     <h1><%= message %></h1>
-    <% if (reportData) { %>
-     
-      <div id="report">
-        
-      </div>
-        
-    <% } %>
+    <table id="report" class="reoprt">
+      <thead>
+        <tr>
+          <th>Serial (क्रम-संख्या)</th>
+          <th>Ponit Sale (सेल पॉइंट)</th>
+          <th>Buyer (खरीदार)</th>
+          <th>CR(नगद)/DB (उधार)</th>
+          <th>Vehicle Number (गाड़ी नंबर)</th>
+          <th>Rokar Number (रोकड़)</th>
+          <th>Loading Date (लोडिंग तारीख)</th>
+          <th>Weight (Metric-Tons) (वजन मीट्रिक टन )</th>
+          <th>Rate(₹) (रेट)</th>
+          <th>Total (₹) (टोटल)</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Add data rows here -->
+        <% if (dataList  &&  dataList.length > 0 ) { %>
+        <% for(let i = 0; i < dataList.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= dataList[i].seller %></td>
+            <td><%= dataList[i].buyer %></td>
+            <td><%= dataList[i].cr_dr == 'CR' ? 'नगद' : 'उधार' %></td>
+            <td><%= dataList[i].vehiclenumber %></td>
+            <td><%= dataList[i].rokar %></td>
+            <td><%= dataList[i].loaddt %></td>
+            <td><%= dataList[i].weight %></td>
+            <td><%= dataList[i].rate %></td>
+            <td><%= dataList[i].total %></td>
+          </tr>
+        <% } %>
+        <% } %>
+      </tbody>
 
-    <script>
-        const data = JSON.parse('<%- reportData %>');
-        //console.log(data);
-        const container = document.getElementById('report');
-        const hot = new Handsontable(container, {
-          data: data,
-          rowHeaders: true,
-          colHeaders: Object.keys(data[0]),
-          columns: [
-            { data: 'sale_point' },
-            { data: 'buyer' },
-            { data: 'cr_dr' },
-            { data: 'vehiclenumber' },
-            { data: 'rokar' },
-            { data: 'loaddt' },
-            { data: 'weight' },
-            { data: 'rate' },
-            { data: 'total' },
-          ],
-          stretchH: 'all',
-          autoWrapRow: true,
-          columnSorting: true,
-          manualRowMove: true,
-          manualColumnMove: true,
-          manualRowResize: true,
-          dropdownMenu: true,
-          filters: true,
-          height: 'auto',
-          licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
-        });
-    </script>
+      <!-- tfoot tag specifies the footer of  
+            this table and starts here -->
+            <tfoot> 
+              <tr> 
+                  <th>Total</th>
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td> 
+                  <td>--</td>
+                  <td>--</td> 
+                  <td>--</td>
+                  <td><%=totalCollection%></td>
+              </tr> 
+          </tfoot> 
+    </table>
     <%- include('common/footer'); %>
   </body>
 </html>

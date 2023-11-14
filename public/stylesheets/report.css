@@ -1,0 +1,18 @@
+.reoprt {
+    border: cellspacing="0"
+  }
+  .reoprt thead, 
+  
+  .reoprt  tfoot { 
+      background-color: green; 
+      color: white; 
+  } 
+
+  .reoprt tr th { 
+      background-color: green; 
+      color: white; 
+  } 
+
+  .reoprt td { 
+      text-align: center; 
+  }
