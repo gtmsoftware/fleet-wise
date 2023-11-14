@@ -56,8 +56,17 @@ router.get('/:rokar', async (req, res, next) => {
 
   const recordList = await getLoading(req.params.rokar);
   
-  viewObject.message = 'Record Found';
-  viewObject.record = recordList[0].vehiclenumber;
+  if(recordList && recordList.length > 0){
+    viewObject.message = 'Record Found';
+    viewObject.record = recordList[0].vehiclenumber;
+  } 
+  else {
+
+    viewObject.message = 'Record Not Found';
+    viewObject.record = 'Not Available';
+
+  }
+  
 
   res.render('loading', viewObject);
 });

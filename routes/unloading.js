@@ -22,8 +22,6 @@ const populateViewObject = async () => {
   const rokerList = await getRokarList();
   viewObject.rokerList = rokerList;
 
-  
-
   const buyerNameList = await getBuyerNameList();
   viewObject.buyerNameList = buyerNameList;
 
@@ -39,10 +37,6 @@ router.get('/', async (req, res, next) => {
   const viewObject = await populateViewObject();
 
   res.locals.gadiList = await getGadiRokarList();
-
-  // Specify the selected item (e.g., 'Banana')
-  // const selectedRokar = 'Banana';
-
 
   viewObject.record = '';
   res.render('unloading', viewObject);

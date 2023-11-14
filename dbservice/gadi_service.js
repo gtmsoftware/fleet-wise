@@ -19,7 +19,7 @@ const getGadiList = async () => {
   };
 
   const getGadiRokarList = async () => {
-    
+
     const query = {
       name: 'get-gadi-rokar-by-rokar',
       text: `SELECT l.vehiclenumber as gadi_num, l.rokar as rokar_num FROM fleetwise_schema.loading l 
@@ -30,17 +30,7 @@ const getGadiList = async () => {
     try {
       const result = await dbConnectionPool.query(query);
       const dataArray = [];
-      // result.rows.forEach((d) => dataArray.push(`{
-      //                                     gadi_number: '${d.gadi_num}',
-      //                                     rokar_number: '${d.rokar_num}'
-      //                                   }`));
-
       result.rows.forEach((d) => dataArray.push(d));
-
-      // dataArray.push(result.rows).apply(dataArray, result.rows);
-
-      console.log(dataArray);
-
       return dataArray;
     } catch (error) {
       console.error('Error:', error);

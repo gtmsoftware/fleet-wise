@@ -16,8 +16,6 @@ const getUnLoading = async (rokar) => {
   
   try {
     const result = await dbConnectionPool.query(query);
-    console.log('UnLoading Entry Fetched :', result.rows);
-    //console.log('UnLoading Entry Fetched 2:', result.rows);
     return result.rows;
   } catch (error) {
     console.error('Error:', error);
@@ -36,21 +34,22 @@ const getUnLoading = async (rokar) => {
  * @param { Vehicle Number } vehiclenumber 
  * @param { ROKAR Number } rokar 
  */
-const saveUnLoading = async (loaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar) => {
+const saveUnLoading = async (unloaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar) => {
   console.log("Started :: Save UnLoading");
   const query = {
     name: 'save-unloading',
-    text: 'INSERT INTO fleetwise_schema.unloading (unloaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
-    values: [loaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar],
+    text: 'SELECT fleetwise_schema.save_unloading($1::timestamp, $2::integer, $3::integer, $4::numeric, $5::numeric, $6::numeric, $7::text, $8::text, $9::text)',
+    values: [unloaddt, sale_point, buyer, weight, rate, total, cr_dr, vehiclenumber, rokar],
   }
-  
+
   try {
     const result = await dbConnectionPool.query(query);
-    console.log('UnLoading Entry added with ID:', result.rows[0]);
+    console.log('UnLoading Entry added successfully');
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
 
 
 const getUnLoadingReport = async (time_range) => {
