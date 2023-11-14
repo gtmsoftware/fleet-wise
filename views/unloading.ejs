@@ -102,8 +102,8 @@
 
     </form>
     <script>
-      
-      function calculate (e) {
+
+      function calculate(e) {
         e.preventDefault();
 
         const weight = document.getElementById("weight").value;
@@ -114,24 +114,35 @@
 
 
       function updateGadiNumber() {
-      var rokarSelect = document.getElementById('rokar');
-      var gadiNumberSelect = document.getElementById('vehicleNumber');
-      var selectedRokar = rokar.value;
+        const rokarSelect = document.getElementById('rokar');
+        const gadiNumberSelect = document.getElementById('vehicleNumber');
+        const selectedRokar = rokar.value;
 
-      // Clear existing options
-      gadiNumberSelect.innerHTML = '<option value="">----------</option>';
+        // Clear existing options
+        gadiNumberSelect.innerHTML = '<option value="">----------</option>';
 
-      if (selectedRokar) {
-        // Populate Gadi Number based on the selected rokar
-        const gadiList = gadiList[selectedRokar];
-        gadiList.forEach(function (gadi) {
-          var option = document.createElement('option');
-          option.value = gadi.gadi_num;
-          option.text = gadi.gadi_num;
-          gadiNumberSelect.add(option);
-        });
+        if (selectedRokar) {
+          // Populate Gadi Number based on the selected rokar
+          const gadiListVar = '<%- JSON.stringify(gadiList)  %>';
+          //console.log(gadiListVar);
+
+          //console.log(selectedRokar);
+
+          //const gadiList = gadiListVar[selectedRokar];
+          const gadiListVar2 = JSON.parse(gadiListVar);
+
+          gadiListVar2.filter((gadi) => {
+            // console.log(gadi.rokar_num);
+            if(gadi.rokar_num === selectedRokar){
+              const option = document.createElement('option');
+            option.value = gadi.gadi_num;
+            option.text = gadi.gadi_num;
+            gadiNumberSelect.add(option);
+            };
+            
+          });
+        }
       }
-    }
 
     </script>
     <%- include('common/footer'); %>

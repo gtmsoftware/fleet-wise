@@ -1,12 +1,12 @@
+const { PrismaClient } = require('@prisma/client');
 const dbConnectionPool = require('./common/db_pool');
-
 /**
  * 
  * @param { Roker Number } rokar 
  * 
  * Will Return Loading Record Based on Rokar Number
  */
-const getLoading2 = async (rokar) => {
+const getLoading = async (rokar) => {
   console.log("Started :: Get Loading");
   const query = {
     name: 'get-loading-by-rokar',
@@ -23,7 +23,7 @@ const getLoading2 = async (rokar) => {
   }
 }
 
-const getLoading = async () => {
+const getLoading2 = async () => {
   const dataArray = [];
 
   const prisma = new PrismaClient();
