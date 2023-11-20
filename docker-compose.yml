@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postgres_ki_service:
+    image: postgres  # image name get downloaded from hub.docker
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: 'postgres#123'
+      POSTGRES_USERNAME: postgres
+      POSTGRES_DATABASE_NAME: om
+  redis_ki_service:
+    image: redis
+    ports:
+      - '6379:6379'
