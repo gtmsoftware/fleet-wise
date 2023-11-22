@@ -24,3 +24,6 @@ COMMENT ON TABLE fleetwise_schema.loading IS 'Store Loading Table Data';
 
 ALTER TABLE fleetwise_schema.loading OWNER TO postgres;
 GRANT ALL ON TABLE fleetwise_schema.loading TO postgres;
+
+--COMMIT
+COMMIT;

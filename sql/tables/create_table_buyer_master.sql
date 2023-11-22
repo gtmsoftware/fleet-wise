@@ -27,3 +27,6 @@ COMMENT ON COLUMN fleetwise_schema.buyer_master.debit IS 'Udhar';
 
 ALTER TABLE fleetwise_schema.buyer_master OWNER TO postgres;
 GRANT ALL ON TABLE fleetwise_schema.buyer_master TO postgres;
+
+--COMMIT
+COMMIT;

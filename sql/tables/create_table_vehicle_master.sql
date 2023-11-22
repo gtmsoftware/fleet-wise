@@ -17,3 +17,6 @@ COMMENT ON COLUMN fleetwise_schema.vehicle_master.gadi_number IS 'This Column Co
 
 ALTER TABLE fleetwise_schema.vehicle_master OWNER TO postgres;
 GRANT ALL ON TABLE fleetwise_schema.vehicle_master TO postgres;
+
+--COMMIT
+COMMIT;

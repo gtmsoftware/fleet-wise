@@ -23,3 +23,6 @@ COMMENT ON TABLE fleetwise_schema.unloading IS 'Store unloading Table Data';
 
 ALTER TABLE fleetwise_schema.unloading OWNER TO postgres;
 GRANT ALL ON TABLE fleetwise_schema.unloading TO postgres;
+
+--COMMIT
+COMMIT;

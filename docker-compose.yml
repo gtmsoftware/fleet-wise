@@ -1,15 +1,23 @@
 version: '3.8'
 
 services:
-  postgres_ki_service:
-    image: postgres  # image name get downloaded from hub.docker
+#SET UP POSTGRES
+  postgres_service:
+    image: postgres:16  # image name get downloaded from hub.docker
+    restart: always
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_PASSWORD: 'postgres#123'
+      POSTGRES_PASSWORD: 'postgres123'
       POSTGRES_USERNAME: postgres
       POSTGRES_DATABASE_NAME: om
-  redis_ki_service:
-    image: redis
-    ports:
-      - '6379:6379'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  #SET UP POSTGRES
+  # redis_service:
+  #   image: redis
+  #   ports:
+  #     - '6379:6379'
