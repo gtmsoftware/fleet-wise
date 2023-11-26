@@ -14,6 +14,7 @@ const dbConnectionPool = new Pool({
   max: process.env.DB_MAX,
   idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT_MS,
   connectionTimeoutMillis: process.env.DB_CONNECTION_TIMEOUT_MS,
+  ssl: { rejectUnauthorized: false },
 });
 
 // Refrence : https://node-postgres.com/apis/pool
