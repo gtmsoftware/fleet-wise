@@ -3,17 +3,17 @@
   <head>
     <title><%= title %></title>
     <%- include('common/meta'); %>
-    <link rel="stylesheet" href="/stylesheets/loading.css">
-    <script src="/javascripts/loading.js"></script>
+    <link rel="stylesheet" href="/stylesheets/trip.css">
+    <script src="/javascripts/trip.js"></script>
   </head>
   <body>
     <%- include('common/header'); %>
     <h1 id="message"><%= message %></h1> 
-    <form id="loadingFrm" method="post" action="/loading">
+    <form id="tripFrm" method="post" action="/trip">
       
       <div class="frm-field">
         <label for="roundTripDate">Round trip start Date (राउंड ट्रिप एंट्री तारीख):</label><br>
-        <input type="datetime-local" id="loadingDate" name="roundTripDate" value="">
+        <input type="datetime-local" id="roundTripDate" name="roundTripDate" value="">
       </div>
 
       <div class="frm-field">
@@ -47,7 +47,7 @@
     
       
       <div class="frm-button frm-field">
-        <button id="loadingFrmSave">Save (सेव करो)</button>
+        <button id="tripFrmSave">Save (सेव करो)</button>
       </div>
 
     </form>

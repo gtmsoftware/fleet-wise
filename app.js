@@ -20,7 +20,7 @@ const reportRouter = require('./routes/report');
 const profileRouter = require('./routes/profile');
 const masterRouter = require('./routes/master');
 const loginRouter = require('./routes/login');
-const startRouter = require('./routes/startRouter');
+const tripRouter = require('./routes/tripRouter');
 
 const nonceMiddleware = require('./middleware/randomNonce');
 
@@ -151,7 +151,7 @@ app.use('/profile', profileRouter);
 app.use('/master', masterRouter);
 app.use('/login', loginRouter);
 
-app.use('/start', startRouter);
+app.use('/trip', tripRouter);
 
 
 // catch 404 and forward to error handler
