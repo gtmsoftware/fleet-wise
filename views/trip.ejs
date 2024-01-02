@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('common/meta'); %>
+    <link rel="stylesheet" href="/stylesheets/trip.css">
+    <script src="/javascripts/trip.js"></script>
+  </head>
+  <body>
+    <%- include('common/header'); %>
+    <h1 id="message"><%= message %></h1> 
+    <form id="tripFrm" method="post" action="/trip">
+      
+      <div class="frm-field">
+        <label for="roundTripDate">Round trip start Date (राउंड ट्रिप एंट्री तारीख):</label><br>
+        <input type="datetime-local" id="roundTripDate" name="roundTripDate" value="">
+      </div>
+
+      <div class="frm-field">
+        <label for="vehicleNumber">Vehicle Number (गाड़ी नंबर):</label><br>
+        <select id="vehicleNumber" name="vehicleNumber" required tabindex="1">
+          <optgroup label="Select Gadi Number (गाड़ी नंबर)">
+            <option value="">--Select--</option>
+            <% gadiList.forEach(function(gadi){ %>
+              <option value="<%= gadi %>"><%= gadi %></option>
+            <% }) %>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="frm-field">
+        <label for="driver">Vehicle Driver (वाहन चालक):</label><br>
+        <select id="driver" name="driver" required tabindex="1">
+          <optgroup label="Select Vehicle Driver (वाहन चालक">
+            <option value="">--Select--</option>
+            <% driverList.forEach(function(driver){ %>
+              <option value="<%= driver.id %>"><%= driver.driver_name %></option>
+            <% }) %>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="frm-field">
+        <label for="tripStartAmt">Round Trip Starting Amount (राउंड ट्रिप आरंभिक राशि):</label><br>
+        <input type="number" min="0.00" max="10000.00" step="1.00" id="tripStartAmt" name="tripStartAmt" value="000000.00">
+      </div>
+    
+      
+      <div class="frm-button frm-field">
+        <button id="tripFrmSave">Save (सेव करो)</button>
+      </div>
+
+    </form>
+    
+    <%- include('common/footer'); %>
+  </body>
+</html>
